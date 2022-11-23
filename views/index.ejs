@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BITS '22</title>
+    <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="/css/index.css" rel="stylesheet">
+    <script type='text/javascript'>
+       window.smartlook||(function(d) {
+         var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+         var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+    c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c);
+    })(document);
+      smartlook('init', '5444d749ce5fad3604ce36be2187e6afb6d296c7', { region: 'eu' });
+    </script>
+  </head>
+  <body>
+    <%- include("partials/nav", { active: "home" , user: username}) %>
+    
+    <main class="main">
+      <section class="landing">
+        <div class="hero">
+          <div class="hero-title">
+            <p>BITS <span>'22</span></p>
+          </div>
+          <div class="hero-desc">
+            <p>The First-Ever Task-Based Intraschool ICT competition, organized by the Ananda College ICT Society to provide a platform for our school's students to polish and improve their ICT knowledge in many fields of ICT</p>
+          </div>
+          <div class="hero-quote">
+            <p><span>"</span> Success is not final, failure is not fatal: it is the courage to continue that counts. <span>"</span></p>
+          </div>
+          <div class="hero-cta">
+            <a id="time"></a>
+          </div>
+        </div>
+        
+        <div class="mascot">
+          <img src="/img/mascot-0223.png">
+        </div>
+      </section>
+
+      <div class="notification-container" id="notification-container"></div>
+      
+      <section class="info">
+        <div class="info-title">What is <span>BITS ?</span></div>
+        <div class="info-desc">
+          <p>BITS is an annual intra-school task-based ICT competition, organized by the Ananda College ICT Society(ACICTS), that will be held online for young Anandians from Grades 6 to 11</p>
+          <p>This year marks the 5th consecutive time BITS was organized to test the skills and knowledge of young anandians while giving them a unique platform to showcase their talents and provide a valuable opportunity to use their abilities for something intuitive and productive.</p>
+          <p>BITS is a task-based ICT competition modelled after international standard competitions like Google Code-In, Summer of Code, etc...</p>
+          <p>The participants will be provided a variety of tasks based on various fields of ICT and they are mainly categorized into 3 separate categories.</p>
+        </div>
+      </section>
+    </main>
+
+    <%- include("partials/footer", { active: "home" }) %>
+
+             <script>
+  var countDownDate = new Date("Oct 5, 2022 18:00:00").getTime();
+           
+  var x = setInterval(function() {
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  document.getElementById("time").innerHTML = "Starts in " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+   if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("time").innerHTML = "Register Now";
+    document.getElementById("time").setAttribute("href", "/signup");
+   }
+  }, 1000);
+ </script>
+
+ <script>
+   const notificationContainer = document.getElementById('notification-container');
+   const NOTIFICATION_TYPES = {
+     SUCCESS: 'success'
+   }
+
+   function addNotification(type, text) {
+      const newNotification = document.createElement('div');
+      newNotification.classList.add('notification', `notification-${type}`);
+
+      const innerNotification = `
+        <i class="fa-solid fa-circle-check"></i> ${text} <u><a href="/quiz">Go to Quiz Page</a></u>
+       `;
+
+      newNotification.innerHTML = innerNotification;
+
+      notificationContainer.appendChild(newNotification);
+
+      return newNotification;
+   }
+
+   function removeNotification(notification) {
+      notification.classList.add('hide');
+
+      setTimeout(() => {
+        notificationContainer.removeChild(notification);
+      }, 500);
+   }
+
+   setTimeout(() => {
+      const success = addNotification(NOTIFICATION_TYPES.SUCCESS, 'Fourth Quiz Date has been announced.');
+      setTimeout(() => {
+        removeNotification(success);
+      }, 15000);
+   }, 1000);
+ </script>
+  </body>
+</html>
